@@ -1,0 +1,17 @@
+{
+  "name": "quiz-backend",
+  "version": "1.0.0",
+  "description": "This is the custom backend for the quiz project.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "mongoose": "^6.6.7"
+  }
+}
