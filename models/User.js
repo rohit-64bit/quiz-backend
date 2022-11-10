@@ -16,10 +16,18 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    contact:{
+        type: String,
+        require:true
+    },
     dob:{
         type: String,
         require:true
-    }
+    },
+    date:{
+        type: Date,
+        default: Date.now
+    },
 
 });
 

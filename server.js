@@ -9,14 +9,20 @@ const app = express();
 const port = 1000;
 
 app.use(express.json())
-// auth api
-app.use('/api/auth/user', require('./routes/userAuth'))
+
+// Auth APIs
 app.use('/api/auth/admin', require('./routes/adminAuth'))
+app.use('/api/auth/instructor', require('./routes/instructorAuth'))
+app.use('/api/auth/user', require('./routes/userAuth'))
+
+// Create APIs
+app.use('/api/create/category', require('./routes/createCategory'))
+app.use('/api/create/quiz', require('./routes/createQuiz'))
 
 
 
 app.get('/', (req, res) => {
-  res.send("Hello World")
+  res.send("this will be rendered on browser page")
 })
 
 app.listen(port, () => {
