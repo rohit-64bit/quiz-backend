@@ -18,10 +18,11 @@ const UserSchema = new Schema({
     },
     contact:{
         type: String,
-        require:true
+        require:true,
+        unique:true
     },
     dob:{
-        type: String,
+        type: Date,
         require:true
     },
     date:{

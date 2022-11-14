@@ -1,12 +1,15 @@
 const express = require('express')
 const connectToMongo = require('./db')
+const cors = require('cors')
 require('dotenv').config()
+const env = process.env;
 
 connectToMongo();
 
-const env = process.env;
 const app = express();
 const port = 1000;
+
+app.use(cors({ origin: "http://127.0.0.1:5173", }))
 
 app.use(express.json())
 
@@ -16,8 +19,10 @@ app.use('/api/auth/instructor', require('./routes/instructorAuth'))
 app.use('/api/auth/user', require('./routes/userAuth'))
 
 // Create APIs
-app.use('/api/create/category', require('./routes/createCategory'))
-app.use('/api/create/quiz', require('./routes/createQuiz'))
+app.use('/api/category', require('./routes/manageCategory'))
+app.use('/api/quiz', require('./routes/manageQuiz'))
+app.use('/api/user', require('./routes/manageUsers'))
+app.use('/api/instructor', require('./routes/manageInstructor'))
 
 
 
