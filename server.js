@@ -13,17 +13,18 @@ app.use(cors({ origin: "http://127.0.0.1:5173", }))
 
 app.use(express.json())
 
-// Auth APIs
+// Auth APIs handles crud for all the level users
 app.use('/api/auth/admin', require('./routes/adminAuth'))
 app.use('/api/auth/instructor', require('./routes/instructorAuth'))
 app.use('/api/auth/user', require('./routes/userAuth'))
 
-// Create APIs
+// Create APIs used for CRED of quiz and categories
 app.use('/api/category', require('./routes/manageCategory'))
 app.use('/api/quiz', require('./routes/manageQuiz'))
+
+// manage APIs mainly used to fetch data
 app.use('/api/user', require('./routes/manageUsers'))
 app.use('/api/instructor', require('./routes/manageInstructor'))
-
 
 
 app.get('/', (req, res) => {
