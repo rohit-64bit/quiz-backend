@@ -8,12 +8,10 @@ const QuizSchema = new Schema({
         required: true
     },
     category: {
-        type: String,
-        require: true
+        type: mongoose.Schema.Types.ObjectId
     },
     level: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId
     },
     questions: [
         {

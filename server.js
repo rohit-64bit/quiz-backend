@@ -4,6 +4,8 @@ const cors = require('cors')
 require('dotenv').config()
 const env = process.env;
 
+
+
 connectToMongo();
 
 const app = express();
@@ -13,14 +15,16 @@ app.use(cors({ origin: "http://127.0.0.1:5173", }))
 
 app.use(express.json())
 
-// Auth APIs handles crud for all the level users
+// Auth APIs handles CRUD for all the level users
 app.use('/api/auth/admin', require('./routes/adminAuth'))
 app.use('/api/auth/instructor', require('./routes/instructorAuth'))
 app.use('/api/auth/user', require('./routes/userAuth'))
 
-// Create APIs used for CRED of quiz and categories
+// Create APIs used for CRUD of quiz, videos, categories
 app.use('/api/category', require('./routes/manageCategory'))
 app.use('/api/quiz', require('./routes/manageQuiz'))
+app.use('/api/video',require('./routes/manageVideo'))
+
 
 // manage APIs mainly used to fetch data
 app.use('/api/user', require('./routes/manageUsers'))

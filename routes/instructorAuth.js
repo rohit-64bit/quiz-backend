@@ -39,8 +39,9 @@ router.post('/createinstructor', [
             phoneNo: req.body.phoneNo,
             address: req.body.address,
             qualification: req.body.qualification,
-            categoryAssinged: req.body.categoryAssinged
+            categoryAssinged: req.body.categoryAssinged,
         })
+
         const data = {
             instructor: {
                 id: instructor.id
@@ -94,8 +95,8 @@ router.post('/authinstructor', [
 // ROUTE 3 : Authenticate a Instructor using : POST '/api/auth/instructor/getinstructor' Require auth
 router.post('/getinstructor', fetchInstructor, async (req, res) => {
     try {
-        instructorID = req.instructor.id
-        const instructor = await Instructor.findById(instructorID).select("-password")
+        instructor = req.instructor.id
+        const instructor = await Instructor.findById(instructor).select("-password")
         res.send(instructor);
     } catch (error) {
         console.error(error.message);
