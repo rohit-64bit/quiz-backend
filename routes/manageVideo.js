@@ -13,14 +13,15 @@ const youtube = require('youtube-metadata-from-url');
 // ROUTE 1: create video : POST '/api/video/create' require auth
 router.post('/create', fetchInstructor, (req, res) => {
     try {
-        const { url, category } = req.body;
+        const { url, category,categoryID } = req.body;
         youtube.metadata(url).then(async function (json) {
             const video = await Video({
                 videoLink : json.html,
                 imageLink: json.thumbnail_url,
                 title:json.title,
-                description: category,
-                url:url
+                categoryName:category,
+                url:url,
+                categoryID: categoryID
             })
             const savedVideo =await video.save()
             res.send(savedVideo)
@@ -34,12 +35,11 @@ router.post('/create', fetchInstructor, (req, res) => {
     }
 })
 
-
 // ROUTE 2: get video : GET '/api/video/fetch' require auth
 
-router.get('/fetch', fetchUser, fetchInstructor, async (req, res) => {
+router.get('/fetch/:category',fetchUser,fetchInstructor, async (req, res) => {
     try {
-        const video = await Video.find();
+        const video = await Video.find({categoryID : req.params.category});
         res.json(video)
     } catch (error) {
         console.log(error.message);
@@ -78,7 +78,7 @@ router.put('/update/:id', fetchInstructor, async (req, res) => {
 router.delete('/delete/:id', fetchInstructor, async (req, res) => {
     try {
         let video = await Video.findById(req.params.id);
-        if (!category) { return res.status(404).send('Not Found') }
+        if (!video) { return res.status(404).send('Not Found') }
 
         video = await Video.findByIdAndDelete(req.params.id)
 

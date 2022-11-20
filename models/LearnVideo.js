@@ -15,17 +15,18 @@ const VideoSchema = new Schema({
         type: String,
         require: true
     },
-    description: {
+    categoryID: {
+        type: mongoose.Schema.Types.ObjectId,
+        require: true,
+        ref: 'category'
+    },
+    categoryName: {
         type: String,
         require: true
     },
-    category:{
-        type:String,
-        require:true
-    },
-    url:{
-        type:String,
-        require:true
+    url: {
+        type: String,
+        require: true
     }
 })
 

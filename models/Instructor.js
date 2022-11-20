@@ -25,6 +25,10 @@ const instructorSchema = new Schema({
     categoryAssinged: {
         type: mongoose.Schema.Types.ObjectId
     },
+    categoryName: {
+        type: String,
+        required: true
+    },
     password: {
         type: String,
         required: true

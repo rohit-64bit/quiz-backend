@@ -3,31 +3,36 @@ const { Schema } = mongoose;
 
 const QuizSchema = new Schema({
 
-    name: {
-        type: String,
-        required: true
-    },
     category: {
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category',
+        require: true
     },
     level: {
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'level',
+        require: true
+    },
+    levelName: {
+        type: String,
+        require: true
+    },
+    categoryName: {
+        type: String,
+        require: true
     },
     questions: [
         {
             questionText: {
                 type: String,
-                required: true
             },
             answerOptions: [
                 {
                     answerText: {
                         type: String,
-                        required: true
                     },
                     isCorrect: {
-                        type: Boolean,
-                        require: true
+                        type: String,
                     },
                 },
             ]

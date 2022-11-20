@@ -95,13 +95,13 @@ router.post('/authinstructor', [
 // ROUTE 3 : Authenticate a Instructor using : POST '/api/auth/instructor/getinstructor' Require auth
 router.post('/getinstructor', fetchInstructor, async (req, res) => {
     try {
-        instructor = req.instructor.id
-        const instructor = await Instructor.findById(instructor).select("-password")
+        // console.log(req.instructor);
+        instructorID = req.instructor.id
+        const instructor = await Instructor.findById(instructorID).select("-password")
         res.send(instructor);
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
     }
 })
-
 module.exports = router

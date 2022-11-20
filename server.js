@@ -24,6 +24,8 @@ app.use('/api/auth/user', require('./routes/userAuth'))
 app.use('/api/category', require('./routes/manageCategory'))
 app.use('/api/quiz', require('./routes/manageQuiz'))
 app.use('/api/video',require('./routes/manageVideo'))
+app.use('/api/level',require('./routes/manageLevels'))
+app.use('/api/userreport',require('./routes/manageUserReport'))
 
 
 // manage APIs mainly used to fetch data

@@ -7,6 +7,10 @@ const LevelSchema = new Schema({
         required :true
     },
     category: {
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        required :true,
+        ref: 'category'
     }
 })
+
+module.exports = mongoose.model('level', LevelSchema)

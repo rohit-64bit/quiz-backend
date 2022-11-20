@@ -11,7 +11,18 @@ router.get('/fetch',fetchAdmin,fetchInstructor, async (req, res) => {
     try {
         const user = await User.find().select("-password");
         res.json(user);
-    } catch {
+    } catch(errors) {
+        console.error(errors.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+router.delete('/delete/:id',fetchAdmin, async (req, res) => {
+    console.log(req.params.id);
+    try {
+        const user = await User.findByIdAndDelete(req.params.id)
+        res.json(user);
+    } catch(errors) {
         console.error(errors.message);
         res.status(500).send("Internal Server Error");
     }
