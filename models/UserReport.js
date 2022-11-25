@@ -6,7 +6,6 @@ const userReportSchema = new Schema({
     // all the user details
     userID: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref: 'user'
     },
     userName: {
@@ -17,7 +16,6 @@ const userReportSchema = new Schema({
         type: String,
         require: true
     },
-
     // all the quiz details
     finalScore: {
         type: String,

@@ -12,7 +12,8 @@ const instructorSchema = new Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     address: {
         type: String,
@@ -23,7 +24,8 @@ const instructorSchema = new Schema({
         required: true
     },
     categoryAssinged: {
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        unique: true
     },
     categoryName: {
         type: String,

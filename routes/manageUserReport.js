@@ -6,18 +6,39 @@ const UserReport = require('../models/UserReport');
 const router = express.Router();
 
 
-router.post('/create',fetchUser, (req, res) => {
-    // update the data if it is available
-    
+router.post('/create', fetchUser, async (req, res) => {
+
+    console.log(req.body);
+
+
+    // const report = await UserReport.find({ quizLevel: req.body.quizLevel, userID: req.body.user });
+    // console.log(report._id);
+
+    // res.json(report._id)
+    // if (!report) {
+    //     console.log("New Report");
     try {
-        const report = UserReport(req.body)
-        report.save()
-        console.log(req.body)
+        const newReport = UserReport(req.body)
+        newReport.save()
         res.send(req.body)
-    } catch (errors) {
-        console.error(errors.message);
-        res.status(500).send("Internal Server Error");
+    } catch (error) {
+        console.log("Error in new report");
+        console.log(error.message);
     }
+    // } else {
+    //     console.log("Report Found");
+    //     let { finalScore, correctAns } = req.body;
+    //     try {
+    //         const newReport = {};
+    //         if (finalScore) { newReport.finalScore = finalScore };
+    //         if (correctAns) { newReport.correctAns = correctAns };
+    //         report = await UserReport.findOneAndUpdate({ quizLevel: req.body.quizLevel, userID: req.body.userID }, { $set: newReport }, { new: true })
+    //         res.json({ newReport });
+    //     } catch (error) {
+    //         console.log(error.message);
+    //         res.status(500).send("Internal Server Error");
+    //     }
+    // }
 })
 
 

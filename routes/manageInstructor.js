@@ -19,13 +19,13 @@ router.get('/fetch', fetchAdmin, fetchInstructor, async (req, res) => {
 })
 
 
-router.delete('/delete/:id', fetchAdmin , async (req, res) => {
+router.delete('/delete/:id', fetchAdmin, async (req, res) => {
     try {
         // Find the category to be delete and delete it
         let instructor = await Instructor.findById(req.params.id);
         if (!instructor) { return res.status(404).send("Not Found") }
 
-        
+
         instructor = await Instructor.findByIdAndDelete(req.params.id)
         res.json({ "Success": "Category has been deleted", instructor: instructor });
     } catch (error) {
@@ -38,21 +38,21 @@ router.delete('/delete/:id', fetchAdmin , async (req, res) => {
 // /api/instructor/update
 
 router.put('/update/:id', fetchAdmin, async (req, res) => {
-    console.log(req.body);
-    console.log('ID',req.params.id);
-    const { name, contact,email,address,qualificfation,category } = req.body;
-    
+
+    const { instructorName, phoneNo, email, address, qualification} = req.body;
+    console.log('ID', req.params.id);
+
     try {
         // Create a new object
         const newInstructor = {};
-        if (name) { newInstructor.name = name };
-        if (contact) { newInstructor.contact = contact };
+        if (instructorName) { newInstructor.instructorName = instructorName };
+        if (phoneNo) { newInstructor.phoneNo = phoneNo };
         if (email) { newInstructor.email = email };
         if (address) { newInstructor.address = address };
-        if (qualificfation) { newInstructor.qualificfation = qualificfation };
-        if (category) { newInstructor.category = category };
+        if (qualification) { newInstructor.qualification = qualification };
 
-        // Find the category to be updated and update it
+
+        // Find the instructor to be updated and update it
         let instructor = await Instructor.findById(req.params.id);
         if (!instructor) { return res.status(404).send("Not Found") }
 
@@ -61,7 +61,7 @@ router.put('/update/:id', fetchAdmin, async (req, res) => {
         res.json({ newInstructor });
 
 
-        console.log("Updated Instructor Successfully");
+        console.log({newInstructor});
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");

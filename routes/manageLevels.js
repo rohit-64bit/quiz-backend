@@ -27,8 +27,8 @@ router.get('/fetch/:category', async (req, res) => {
 
     // console.log(req.params);
     try {
-        var mysort = { name: -1 };
-        const level = await Level.find({ category: req.params.category }).sort(mysort)
+
+        const level = await Level.find({ category: req.params.category })
         res.json(level);
     } catch (errors) {
         console.error(errors.message);

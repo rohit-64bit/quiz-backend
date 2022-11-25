@@ -40,6 +40,7 @@ router.post('/createinstructor', [
             address: req.body.address,
             qualification: req.body.qualification,
             categoryAssinged: req.body.categoryAssinged,
+            categoryName: req.body.categoryName
         })
 
         const data = {
@@ -51,7 +52,7 @@ router.post('/createinstructor', [
 
         // res.json(Instructor)
         res.json({ authtoken })
-    } catch {
+    } catch (errors){
         console.error(errors.message);
         res.status(500).send("Internal Server Error");
     }

@@ -2,15 +2,20 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
 const categorySchema = new Schema({
-    name:{
+    name: {
         type: String,
-        required:true,
-        unique:true
+        required: true,
+        unique: true
     },
-    description:{
-        type:String,
-        required:true
+    description: {
+        type: String,
+        required: true
+    },
+    isAssinged: {
+        type: Boolean,
+        default: false,
+        require: true
     }
 })
 
-module.exports = mongoose.model("category",categorySchema);
+module.exports = mongoose.model("category", categorySchema);

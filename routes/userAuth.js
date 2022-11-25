@@ -52,7 +52,7 @@ router.post('/createuser', [
         // res.json(user)
         success = true;
         res.json({ success, authtoken })
-    } catch(errors) {
+    } catch (errors) {
         console.error(errors.message);
         res.status(500).send("Internal Server Error");
     }
@@ -100,34 +100,32 @@ router.post('/authuser', [
 
 // ROUTE 3 : Authenticate a user using : POST '/api/auth/user/getuser' Require auth
 router.post('/getuser', fetchUser, async (req, res) => {
+    console.log(req.user);
     try {
-        userID = req.user.id
+        const userID = req.user.id
         const user = await User.findById(userID).select("-password")
+        console.log(user);
         res.send(user);
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
     }
+
 })
 
 router.put('/update/:id', fetchUser, async (req, res) => {
-    console.log(req.body);
-    console.log('ID',req.params.id);
+
+    console.log('ID', req.params.id);
     const { name, dob, contact } = req.body;
-    
+
     try {
         // Create a new object
         const newUser = {};
         if (name) { newUser.name = name };
-
-        // const salt = await bcrypt.genSalt(10)
-        // const secPass = await bcrypt.hash(password, salt);
-
-        // if (secPass) { newUser.password = secPass };
         if (dob) { newUser.dob = dob };
         if (contact) { newUser.contact = contact };
 
-        // Find the category to be updated and update it
+
         let user = await User.findById(req.params.id);
         if (!user) { return res.status(404).send("Not Found") }
 

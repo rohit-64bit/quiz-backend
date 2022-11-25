@@ -26,7 +26,7 @@ router.get('/fetch/:level', fetchAdmin, fetchUser, fetchInstructor, async (req, 
     try {
         const quiz = await Quiz.find({ level: req.params.level });
         res.json(quiz[0]);
-        console.log(quiz[0]);
+        
     } catch (errors) {
         console.error(errors.message);
         res.status(500).send("Internal Server Error");

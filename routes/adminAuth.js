@@ -45,7 +45,7 @@ router.post('/createadmin', [
 
         // res.json(Admin)
         res.json({ authtoken })
-    } catch {
+    } catch(errors) {
         console.error(errors.message);
         res.status(500).send("Internal Server Error");
     }
