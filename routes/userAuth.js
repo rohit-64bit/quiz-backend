@@ -100,11 +100,11 @@ router.post('/authuser', [
 
 // ROUTE 3 : Authenticate a user using : POST '/api/auth/user/getuser' Require auth
 router.post('/getuser', fetchUser, async (req, res) => {
-    console.log(req.user);
+    // console.log(req.user);
     try {
         const userID = req.user.id
         const user = await User.findById(userID).select("-password")
-        console.log(user);
+        // console.log(user);
         res.send(user);
     } catch (error) {
         console.error(error.message);
@@ -115,7 +115,7 @@ router.post('/getuser', fetchUser, async (req, res) => {
 
 router.put('/update/:id', fetchUser, async (req, res) => {
 
-    console.log('ID', req.params.id);
+    // console.log('ID', req.params.id);
     const { name, dob, contact } = req.body;
 
     try {
@@ -135,7 +135,7 @@ router.put('/update/:id', fetchUser, async (req, res) => {
         res.json({ newUser });
 
 
-        console.log("Updated Profile Successfully");
+        // console.log("Updated Profile Successfully");
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");

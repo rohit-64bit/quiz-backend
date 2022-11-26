@@ -55,7 +55,16 @@ router.get('/fetch', fetchAdmin, fetchUser, fetchInstructor, async (req, res) =>
 })
 
 
+router.get('/find/:id', fetchInstructor, async (req, res) => {
+    try {
+        const category = await Category.find({ _id:req.params.id});
+        res.json(category[0]);
+    } catch (errors) {
+        console.error(errors.message);
+        res.status(500).send("Internal Server Error");
+    }
 
+})
 
 
 
