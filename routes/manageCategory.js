@@ -45,7 +45,7 @@ router.get('/fetch/notcategory', fetchAdmin, async (req, res) => {
 
 router.get('/fetch', fetchAdmin, fetchUser, fetchInstructor, async (req, res) => {
     try {
-        const category = await Category.find();
+        const category = await Category.find().sort({_id : -1});
         res.json(category);
     } catch (errors) {
         console.error(errors.message);

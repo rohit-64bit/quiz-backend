@@ -4,7 +4,8 @@
   "description": "This is the custom backend for the quiz project.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,5 +18,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.7",
     "youtube-metadata-from-url": "^1.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

@@ -58,7 +58,7 @@ router.post('/create', fetchUser, async (req, res) => {
 router.get('/fetch/reports', fetchAdmin, fetchInstructor, async (req, res) => {
     console.log(res.user)
     try {
-        const report = await UserReport.find();
+        const report = await UserReport.find().sort({_id : -1});
         res.json(report);
     } catch (errors) {
         console.error(errors.message);
@@ -70,7 +70,7 @@ router.get('/fetch/reports', fetchAdmin, fetchInstructor, async (req, res) => {
 router.get('/fetch/instructor/:id', fetchUser, async (req, res) => {
 
     try {
-        const report = await UserReport.find({ quizCategory: req.params.id });
+        const report = await UserReport.find({ quizCategory: req.params.id }).sort({_id : -1});
         res.json(report);
     } catch (errors) {
         console.error(errors.message);
@@ -82,13 +82,24 @@ router.get('/fetch/instructor/:id', fetchUser, async (req, res) => {
 router.get('/fetch/:id', fetchUser, async (req, res) => {
 
     try {
-        const report = await UserReport.find({ userID: req.params.id });
+        const report = await UserReport.find({ userID: req.params.id }).sort({_id : -1});
         res.json(report);
     } catch (errors) {
         console.error(errors.message);
         res.status(500).send("Internal Server Error");
     }
 
+})
+
+router.post('/fetch/reports/levels', fetchUser, async (req, res) => {
+    console.log(res.user)
+    try {
+        const report = await UserReport.find({ quizLevel: req.body.quizLevel, userID: req.body.userID });
+        res.json(report[0]);
+    } catch (errors) {
+        console.error(errors.message);
+        res.status(500).send("Internal Server Error");
+    }
 })
 
 

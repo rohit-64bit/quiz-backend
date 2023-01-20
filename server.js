@@ -9,9 +9,9 @@ const env = process.env;
 connectToMongo();
 
 const app = express();
-const port = 1000;
+const port = process.env.PORT || 1000;
 
-app.use(cors({ origin: "http://127.0.0.1:5173", }))
+app.use(cors({ origin: `${env.CLIENT_URL}`, }))
 
 app.use(express.json())
 
@@ -34,7 +34,7 @@ app.use('/api/instructor', require('./routes/manageInstructor'))
 
 
 app.get('/', (req, res) => {
-  res.send("this will be rendered on browser page")
+  res.send(`visit : ${env.CLIENT_URL}`)
 })
 
 app.listen(port, () => {
